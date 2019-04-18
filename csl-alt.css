@@ -1,0 +1,38 @@
+/* csl-alt.css */
+
+body
+{
+	background-color: #C2DFFF;
+	color: #000000;
+	font-family: Arial
+}
+
+#csl_site_title
+{
+	background-color: #79BAEC;
+	color: white;
+	font-size:  18pt;
+	font-weight: bold
+}
+
+#csl_navigation
+{
+	background-color: white;
+	color: black;
+	font-size: 14pt;
+	font-weight: medium;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#csl_navigation:hover {
+	background-color: khaki;
+}
+
+#csl_page_title
+{
+	color: black;
+	font-size:  16pt;
+	font-weight: bold
+
+}

@@ -1,0 +1,53 @@
+/* csl.css */
+
+body
+{
+	background-color: #E6E6FA;
+	color: #000000;
+	font-family: Arial
+}
+
+a {
+	text-decoration: none;
+}
+
+#csl_site_title
+{
+	background-color: mediumpurple;
+	color: white;
+	font-size:  18pt;
+	font-weight: bold;
+}
+
+#csl_navigation
+{
+	background-color: white;
+	color: black;
+	font-size: 14pt;
+	font-weight: medium;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#csl_navigation:hover {
+	background-color: pink;
+	transition: all ease-in-out .3s;
+	border-style: inset;
+	border-top: 5px;
+	border-bottom: 5px;
+	border-color: black;
+}
+
+th {
+	background-color: #C8C8C8;
+}
+
+#csl_page_title
+{
+	color: black;
+	font-size:  16pt;
+	font-weight: bold;
+}
+
+
+
