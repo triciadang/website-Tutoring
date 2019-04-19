@@ -37,7 +37,7 @@
            </div>
            <center>
            <table border="1" cellpadding="4">
-             <tr><th>First Name</th><th>Last Name</th><th>Major</th></tr></th><th>Phone</th></tr>
+             <tr><th>First Name</th><th>Last Name</th><th>Major</th><th>Phone</th></tr>
 
 <!-- Note the use of <?php ?> to embed PHP commands 
      and connect to the database and retrieve the info -->
@@ -70,7 +70,7 @@
              for ($i=0; $i < $num_results; $i++) 
              {
                $r= $results->fetch_assoc();
-               print '<tr><td>'.$r['tutorFName'].'</td><td>'.$r['tutorLName'].'</td><td>'.$r['tutorMajor'].' </td></tr>'.$r['tutorPhone'].' </td></tr>';
+               print '<tr><td>'.$r['tutorFName'].'</td><td>'.$r['tutorLName'].'</td><td>'.$r['tutorMajor'].' </td><td>'.$r['tutorPhone'].' </td></tr>';
              }
 
              // deallocate memory for the results and close the database connection
