@@ -66,21 +66,21 @@
              $num_results = $results->num_rows;
 			 
 			 // check for empty values
-			 $noFirstName = false;
-			 $noLastName = false;
-			 $noMajor = false;
+			 $noFirstName = 0;
+			 $noLastName = 0;
+			 $noMajor = 0;
 			 
-			 if(strcmp($_POST['firstName'],'')!=0)
+			 if(strcasecmp($_POST['firstName'],'')!=0)
 			 {
-				 $noFirstName = true;
+				 $noFirstName = 1;
 			 }
-			 if(strcmp($_POST['lastName'],'')!=0)
+			 if(strcasecmp($_POST['lastName'],'')!=0)
 			 {
-				 $noLastName = true;
+				 $noLastName = 1;
 			 }
-			 if(strcmp($_POST['major'],'')!=0)
+			 if(strcasecmp($_POST['major'],'')!=0)
 			 {
-				 $noMajor = true;
+				 $noMajor = 1;
 			 }
 
              // loop through each row building the table rows and data columns
@@ -88,9 +88,10 @@
              for ($i=0; $i < $num_results; $i++) 
              {
                $r= $results->fetch_assoc();
-			   if(($noFirstName OR (strcmp($r['tutorFName'],$_POST['firstName']) == 0)) AND 
-			   ($noLastName OR (strcmp($r['tutorLName'],$_POST['lastName']) == 0)) AND 
-			   ($noMajor OR (strcmp($r['tutorMajor'],$_POST['major']) == 0)))
+			   if((($noFirstName == 0) OR (strcasecmp($r['tutorFName'],$_POST['firstName']) == 0)) AND 
+			   (($noLastName == 0) OR (strcasecmp($r['tutorLName'],$_POST['lastName']) == 0)) AND 
+			   (($noMajor == 0) OR (strcasecmp($r['tutorMajor'],$_POST['major']) == 0)) AND
+			   (($noFirstName+$noLastName+$noMajor)>0))
 			   {
 				   print '<tr><td>'.$r['tutorFName'].'</td><td>'.$r['tutorLName'].'</td><td>'.$r['tutorMajor'].' </td><td>'.$r['tutorPhone'].' </td></tr>';
 			   }
@@ -100,6 +101,8 @@
 
              $results->free();
              $db->close();
+			 
+			 
 
            ?>
 		   
