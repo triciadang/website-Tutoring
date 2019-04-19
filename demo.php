@@ -25,15 +25,15 @@
        <tr><th>Parameter</th><th>Value</th></tr>
        <tr><td>First Name</td><td><?php echo $_POST['firstName']; ?></td></tr>
        <tr><td>Last Name</td><td><?php echo $_POST['lastName']; ?></td></tr>
-       <tr><td>Email Address</td><td><?php echo $_POST['emailAddress']; ?></td></tr>
-       <tr><td>Age</td><td><?php echo $_POST['age']; ?></td></tr>
-       <tr><td>Gender</td><td><?php echo $_POST['gender']; ?></td></tr>
+       <tr><td>Major</td><td><?php echo $_POST['emailAddress']; ?></td></tr>
+       <tr><td>Rooom Number</td><td><?php echo $_POST['age']; ?></td></tr>
+       <tr><td>Building</td><td><?php echo $_POST['gender']; ?></td></tr>
+	   <tr><td>Phone Number</td><td><?php echo $_POST['gender']; ?></td></tr>
+	   <tr><td>Email Address</td><td><?php echo $_POST['emailAddress']; ?></td></tr>
+	   <tr><td>Class Year</td><td><?php echo $_POST['c']; ?></td></tr>
        <tr><td>Car Access</td><td>
-           <?php
-                 if (isset($_POST['carAccess']))
-                 { echo $_POST['carAccess']; }
-                 else { echo 'undefined'; }
-                                           ?></td></tr>
+	
+	 </td></tr>
      </table>
      <br />
 

@@ -44,7 +44,7 @@
 				
 			// first names must be letter, spaces, and hyphens and 50 or fewer characters
 				var validInputValue = new Boolean(true);
-				var firstNameValue = document.forms["volunteer_info"]["firstName"].value;
+				var firstNameValue = document.forms["tutor_info"]["firstName"].value;
 				var myRegExp = new RegExp("^[a-zA-Z \-]{1,50}$");
 				
 			// Test our receivedValue string against the regular expression
@@ -63,7 +63,7 @@
 				}
 
 			// last names must be letter, spaces, and hyphens and 50 or fewer characters
-				var lastNameValue = document.forms["volunteer_info"]["lastName"].value;
+				var lastNameValue = document.forms["tutor_info"]["lastName"].value;
 				
 			// Test our receivedValue string against the regular expression
 				validInputValue = myRegExp.test(lastNameValue);  
@@ -81,7 +81,7 @@
 				}
 
 			// email address must be letters, digits, underscores, and periods with one @
-				var emailAddressValue = document.forms["volunteer_info"]["emailAddress"].value;
+				var emailAddressValue = document.forms["tutor_info"]["emailAddress"].value;
 				myRegExp = new RegExp("^[a-zA-Z0-9_.\-]+@[a-zA-Z0-9_.]+$");
 				
 			// Test our receivedValue string against the regular expression
@@ -98,9 +98,36 @@
 					displayError("Email address must be letters, digits, underscores, and periods with one @ and at most 50 characters.");
 					document.getElementById('emailAddressFeedback').innerHTML = "Error #" + errorCount;
 				}
+				
+				
+				
+				// tricia trial
+				
+				// room must be 3C4
+				var roomValue = document.forms["tutor_info"]["room"].value;
+				myRegExp = new RegExp("^[1-6]+[A-Z]+[0-9]+$");
+				
+			// Test our receivedValue string against the regular expression
+				validInputValue = myRegExp.test(emailAddressValue);  
+				
+			// Update form feedback
+				if (validInputValue) 
+				{
+					document.getElementById('roomFeedback').innerHTML = "";
+				}
+				else
+				{
+					validForm = false;
+					displayError("Room Number must be in the form 3C10 or 6A100");
+					document.getElementById('roomFeedback').innerHTML = "Error #" + errorCount;
+				}
+				
+				//tricia trial
+				
+				
 
 			// age must be numeric and in range of 17 to 29 inclusive
-				var ageValue = document.forms["volunteer_info"]["age"].value;
+				var ageValue = document.forms["tutor_info"]["age"].value;
 
 				myRegExp = new RegExp("^[0-9]{2}$");  // check that age is numeric
 				
@@ -122,7 +149,7 @@
 				}
 
 			// gender must be specified
-				if ((document.volunteer_info.gender[0].checked) || (document.volunteer_info.gender[1].checked)) 
+				if ((document.tutor_info.gender[0].checked) || (document.tutor_info.gender[1].checked)) 
 				{
 					document.getElementById('genderFeedback').innerHTML = "";
 				}
@@ -157,7 +184,7 @@
 							<br /><p><center>Sign Up to Be a Tutor!</center><p>
 						</div>
 						<center>
-							<form name="volunteer_info" method="post" id="volunteer_form" action="demo.php" onsubmit="return validateForm()">
+							<form name="tutor_info" method="post" id="tutor_form" action="demo.php" onsubmit="return validateForm()">
 								<h3>Enter your information and click Submit</h3>
 								<div id="formFeedback" class="formError"></div>
 								<table>
@@ -173,44 +200,52 @@
 											<td><div id="lastNameFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
-											<td>Major: </td>
-											<td><input type="text" name="lastName" maxlength="50" size="50" align="left"></input></td>
-											<td><div id="lastNameFeedback" class="formError"></div></td>
-										</tr>
-										<tr>
-											<td>Minor: </td>
-											<td><input type="text" name="lastName" maxlength="50" size="50" align="left"></input></td>
-											<td><div id="lastNameFeedback" class="formError"></div></td>
-										</tr>
-										<tr>
-											<td>2nd Major?: </td>
-											<td><input type="text" name="lastName" maxlength="50" size="50" align="left"></input></td>
-											<td><div id="lastNameFeedback" class="formError"></div></td>
-										</tr>
-										<tr>
-											<td>2nd Minor?: </td>
-											<td><input type="text" name="lastName" maxlength="50" size="50" align="left"></input></td>
-											<td><div id="lastNameFeedback" class="formError"></div></td>
+											<td>Major:  </td>
+											<td>
+											<select name="major">
+											  <option value=""></option>
+											  <option value="aero">Aeronautical Engineering</option>
+											  <option value="astro">Astronautical Engineering</option>
+											  <option value="biology">Biology</option>
+											  <option value="behSci">Behavioral Sciences</option>
+											  <option value="chem">Chemistry</option>
+											  <option value="civil">Civil Engineering</option>
+											  <option value="compSci">Computer Science</option>
+											  <option value="compSci">Cyber Science</option>
+											</select>
+											</td>
 										</tr>
 										<tr>
 											<td>Room Number: </td>
-											<td><input type="text" name="emailAddress" size="5" align="left"></input></td>
+											<td><input type="text" name="room" size="5" align="left"></input></td>
 											<td><div id="emailAddressFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
 											<td>Building: </td>
-											<td><input type="radio" name="gender" value="male" align="left">Vandy</input>   <input type="radio" name="gender" value="female" align="left">Sijan</input></td>
+											<td><input type="radio" name="building" value="vandy" align="left">Vandy</input>   <input type="radio" name="building" value="sijan" align="left">Sijan</input></td>
 											<td><div id="genderFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
 											<td>Phone Number: </td>
-											<td><input type="text" name="emailAddress" size="50" align="lefx ttt"></input></td>
+											<td><input type="text" name="phoneNumber" size="10" align="left"></input></td>
+											<td><div id="roomFeedback" class="formError"></div></td>
+										</tr>
+										<tr>
+											<td>Email Address: </td>
+											<td><input type="text" name="emailAddress" size="50" align="left"></input></td>
 											<td><div id="emailAddressFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
-											<td>Class Year: </td>
-											<td><input type="text" name="age" size="4" align="left"></input></td>
-											<td><div id="ageFeedback" class="formError"></div></td>
+											<td>Class Year:  </td>
+											<td>
+											<select name="classYear">
+											  <option value=""></option>
+											  <option value="2019">2019</option>
+											  <option value="2020">2020</option>
+											  <option value="2021">2021</option>
+											  <option value="2022">2022</option>
+											</select>
+											</td>
 										</tr>
 										
 										<tr>						
@@ -458,7 +493,7 @@
 										</tr>
 										
 										
-																				<tr>
+										<tr>
 										<td>Computer Science & Cyber Science (DFCS)</td>
 										</tr>
 										<tr>
