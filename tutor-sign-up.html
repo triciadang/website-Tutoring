@@ -1,10 +1,10 @@
-<!-- volunteer.html -->
+<!-- tutor-sign-up.html -->
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xml:lang="en">
 	<head>
-		<title>Cadet Service Learning Program</title>
+		<title>Tutor Sign-Up</title>
 		<link type="text/css" rel="stylesheet" href="csl.css">
 		
    
@@ -141,17 +141,20 @@
 		<table border="0" width="100%">
 			<tbody>
 				<tr>
-					<td colspan="4"><div id="csl_site_title" ><br /><center>Cadet Service Learning (CSL) Program</center><br /></div></td>
+					<td colspan="4"><div id="tutor_site_title"><br /><center>USAFA Tutoring</center><br /></div></td>
 				</tr>
 				<tr>
-					<td width="33%"><center><div id="csl_navigation"><a href="index.html">CSL Intro</a></div></center></td>
-					<td width="33%"><center><div id="csl_navigation"><a href="partners.html">Service Partners</a></div></center></td>
-					<td width="33%"><center><div id="csl_navigation"><a href="volunteer.html">Volunteer Info</a></div></center></td>
+					<td width="25%"><center><div id="tutor_navigation"><a href="index.html">Intro</a></div></center></td>
+					<td width="25%"><center><div id="tutor_navigation"><a href="find-tutor.html">Find A Tutor</a></div></center></td>
+					<td width="25%"><center><div id="tutor_navigation"><a href="tutor-sign-up.html">Be A Tutor</a></div></center></td>
+					<td width="25%"><center><div id="tutor_navigation"><a href="all-tutors.html">All Tutors</a></div></center></td>
 				</tr>
 				<tr>
 					<td colspan="4">
-						<div id="csl_page_title">
-							<br /><p><center>CSL Volunteer Form</center><p>
+					
+					
+						<div id="tutor_page_title">
+							<br /><p><center>Sign Up to Be a Tutor!</center><p>
 						</div>
 						<center>
 							<form name="volunteer_info" method="post" id="volunteer_form" action="demo.php" onsubmit="return validateForm()">
@@ -170,12 +173,42 @@
 											<td><div id="lastNameFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
-											<td>Email Address: </td>
-											<td><input type="text" name="emailAddress" size="50" align="left"></input></td>
+											<td>Major: </td>
+											<td><input type="text" name="lastName" maxlength="50" size="50" align="left"></input></td>
+											<td><div id="lastNameFeedback" class="formError"></div></td>
+										</tr>
+										<tr>
+											<td>Minor: </td>
+											<td><input type="text" name="lastName" maxlength="50" size="50" align="left"></input></td>
+											<td><div id="lastNameFeedback" class="formError"></div></td>
+										</tr>
+										<tr>
+											<td>2nd Major?: </td>
+											<td><input type="text" name="lastName" maxlength="50" size="50" align="left"></input></td>
+											<td><div id="lastNameFeedback" class="formError"></div></td>
+										</tr>
+										<tr>
+											<td>2nd Minor?: </td>
+											<td><input type="text" name="lastName" maxlength="50" size="50" align="left"></input></td>
+											<td><div id="lastNameFeedback" class="formError"></div></td>
+										</tr>
+										<tr>
+											<td>Room Number: </td>
+											<td><input type="text" name="emailAddress" size="5" align="left"></input></td>
 											<td><div id="emailAddressFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
-											<td>Age: </td>
+											<td>Building: </td>
+											<td><input type="radio" name="gender" value="male" align="left">Vandy</input>   <input type="radio" name="gender" value="female" align="left">Sijan</input></td>
+											<td><div id="genderFeedback" class="formError"></div></td>
+										</tr>
+										<tr>
+											<td>Phone Number: </td>
+											<td><input type="text" name="emailAddress" size="50" align="lefx ttt"></input></td>
+											<td><div id="emailAddressFeedback" class="formError"></div></td>
+										</tr>
+										<tr>
+											<td>Class Year: </td>
 											<td><input type="text" name="age" size="4" align="left"></input></td>
 											<td><div id="ageFeedback" class="formError"></div></td>
 										</tr>
@@ -183,11 +216,6 @@
 											<td>Gender: </td>
 											<td><input type="radio" name="gender" value="male" align="left">Male</input>   <input type="radio" name="gender" value="female" align="left">Female</input></td>
 											<td><div id="genderFeedback" class="formError"></div></td>
-										</tr>
-										<tr>
-											<td>Access to a Car:  </td>
-											<td><input type="checkbox" name="carAccess" value="hasCarAccess" align="left">Check if Yes</input></td>
-											<td><div id="carAccessFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
 											<td colspan="2"><br/><input type="submit" value="Submit"></input></td>
