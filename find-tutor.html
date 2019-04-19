@@ -45,7 +45,7 @@
 			// first names must be letter, spaces, and hyphens and 50 or fewer characters
 				var validInputValue = new Boolean(true);
 				var firstNameValue = document.forms["volunteer_info"]["firstName"].value;
-				var myRegExp = new RegExp("^[a-zA-Z \-]{1,50}$");
+				var myRegExp = new RegExp("^[a-zA-Z \-]{0,50}$");
 				
 			// Test our receivedValue string against the regular expression
 				validInputValue = myRegExp.test(firstNameValue);  
@@ -79,59 +79,6 @@
 					displayError("Last name must be letters, hyphens, spaces and 50 or fewer characters" );
 					document.getElementById('lastNameFeedback').innerHTML = "Error #" + errorCount;
 				}
-
-			// email address must be letters, digits, underscores, and periods with one @
-				var emailAddressValue = document.forms["volunteer_info"]["emailAddress"].value;
-				myRegExp = new RegExp("^[a-zA-Z0-9_.\-]+@[a-zA-Z0-9_.]+$");
-				
-			// Test our receivedValue string against the regular expression
-				validInputValue = myRegExp.test(emailAddressValue);  
-				
-			// Update form feedback
-				if (validInputValue && emailAddressValue.length <= 50) 
-				{
-					document.getElementById('emailAddressFeedback').innerHTML = "";
-				}
-				else
-				{
-					validForm = false;
-					displayError("Email address must be letters, digits, underscores, and periods with one @ and at most 50 characters.");
-					document.getElementById('emailAddressFeedback').innerHTML = "Error #" + errorCount;
-				}
-
-			// age must be numeric and in range of 17 to 29 inclusive
-				var ageValue = document.forms["volunteer_info"]["age"].value;
-
-				myRegExp = new RegExp("^[0-9]{2}$");  // check that age is numeric
-				
-			// Test our receivedValue string against the regular expression
-				validInputValue = myRegExp.test(ageValue);  
-				
-				var age = new Number(ageValue);  // convert to a number
-				
-			// Update form feedback
-				if ((validInputValue) && (age >= 17) && (age <= 29)) 
-				{
-					document.getElementById('ageFeedback').innerHTML = "";
-				}
-				else
-				{
-					validForm = false;
-					displayError("Age must be numeric in range of 17 to 29 inclusive");
-					document.getElementById('ageFeedback').innerHTML = "Error #" + errorCount;
-				}
-
-			// gender must be specified
-				if ((document.volunteer_info.gender[0].checked) || (document.volunteer_info.gender[1].checked)) 
-				{
-					document.getElementById('genderFeedback').innerHTML = "";
-				}
-				else
-				{
-					validForm = false;
-					displayError("Gender must be specified");
-					document.getElementById('genderFeedback').innerHTML = "Error #" + errorCount;
-				}
 				
 				return validForm;
 			}
@@ -157,8 +104,8 @@
 							<br /><p><center>Find a Tutor</center><p>
 						</div>
 						<center>
-							<form name="volunteer_info" method="post" id="volunteer_form" action="demo.php" onsubmit="return validateForm()">
-								<h3>Enter your information and click Submit</h3>
+							<form name="volunteer_info" method="post" id="volunteer_form" action="search-tutors.php" onsubmit="return validateForm()">
+								<h3>Enter tutor information and click Submit</h3>
 								<div id="formFeedback" class="formError"></div>
 								<table>
 									<tbody>
@@ -173,27 +120,23 @@
 											<td><div id="lastNameFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
-											<td>Email Address: </td>
-											<td><input type="text" name="emailAddress" size="50" align="left"></input></td>
-											<td><div id="emailAddressFeedback" class="formError"></div></td>
+											<td>Major:  </td>
+											<td>
+											<select name="major">
+											  <option value=""></option>
+											  <option value="aero">Aeronautical Engineering</option>
+											  <option value="astro">Astronautical Engineering</option>
+											  <option value="biology">Biology</option>
+											  <option value="behSci">Behavioral Sciences</option>
+											  <option value="chem">Chemistry</option>
+											  <option value="civil">Civil Engineering</option>
+											  <option value="compSci">Computer Science</option>
+											  <option value="compSci">Cyber Science</option>
+											</select>
+											</td>
 										</tr>
 										<tr>
-											<td>Age: </td>
-											<td><input type="text" name="age" size="4" align="left"></input></td>
-											<td><div id="ageFeedback" class="formError"></div></td>
-										</tr>
-										<tr>
-											<td>Gender: </td>
-											<td><input type="radio" name="gender" value="male" align="left">Male</input>   <input type="radio" name="gender" value="female" align="left">Female</input></td>
-											<td><div id="genderFeedback" class="formError"></div></td>
-										</tr>
-										<tr>
-											<td>Access to a Car:  </td>
-											<td><input type="checkbox" name="carAccess" value="hasCarAccess" align="left">Check if Yes</input></td>
-											<td><div id="carAccessFeedback" class="formError"></div></td>
-										</tr>
-										<tr>
-											<td colspan="2"><br/><input type="submit" value="Submit"></input></td>
+											<td colspan="2"><br/><input type="submit" value="Search"></input></td>
 										</tr>
 									</tbody>
 								</table>
