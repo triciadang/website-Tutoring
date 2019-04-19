@@ -7,7 +7,7 @@ body
 	font-family: Arial
 }
 
-#csl_site_title
+#tutor_site_title
 {
 	background-color: #79BAEC;
 	color: white;
@@ -15,7 +15,7 @@ body
 	font-weight: bold
 }
 
-#csl_navigation
+#tutor_navigation
 {
 	background-color: white;
 	color: black;
@@ -25,11 +25,11 @@ body
 	padding-bottom: 10px;
 }
 
-#csl_navigation:hover {
+#tutor_navigation:hover {
 	background-color: khaki;
 }
 
-#csl_page_title
+#tutor_page_title
 {
 	color: black;
 	font-size:  16pt;
