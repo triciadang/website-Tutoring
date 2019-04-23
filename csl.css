@@ -54,4 +54,10 @@ th {
 	height: auto;
 }
 
+.courseTable {
+	width: 70%;
+	column-width: = 200px;
+	table-layout: fixed;
+}
+
 

@@ -37,7 +37,7 @@
            </div>
            <center>
            <table border="1" cellpadding="4">
-             <tr><th>First Name</th><th>Last Name</th><th>Major</th><th>Phone Number</th></tr>
+             <tr><th>First Name</th><th>Last Name</th><th>Squadron</th><th>Major</th><th>Phone Number</th></tr>
 
 <!-- Note the use of <?php ?> to embed PHP commands 
      and connect to the database and retrieve the info -->
@@ -69,6 +69,7 @@
 			 $noFirstName = 0;
 			 $noLastName = 0;
 			 $noMajor = 0;
+			 $noSquadron = 0;
 			 
 			 if(strcasecmp($_POST['firstName'],'')!=0)
 			 {
@@ -82,6 +83,10 @@
 			 {
 				 $noMajor = 1;
 			 }
+			 if(strcasecmp($_POST['squadron'],'')!=0)
+			 {
+				 $noSquadron = 1;
+			 }
 
              // loop through each row building the table rows and data columns
 
@@ -91,9 +96,10 @@
 			   if((($noFirstName == 0) OR (strcasecmp($r['tutorFName'],$_POST['firstName']) == 0)) AND 
 			   (($noLastName == 0) OR (strcasecmp($r['tutorLName'],$_POST['lastName']) == 0)) AND 
 			   (($noMajor == 0) OR (strcasecmp($r['tutorMajor'],$_POST['major']) == 0)) AND
-			   (($noFirstName+$noLastName+$noMajor)>0))
+			   (($noSquadron == 0) OR (strcasecmp($r['tutorSquadron'],$_POST['squadron']) == 0)) AND
+			   (($noFirstName+$noLastName+$noMajor+$noSquadron)>0))
 			   {
-				   print '<tr><td>'.$r['tutorFName'].'</td><td>'.$r['tutorLName'].'</td><td>'.$r['tutorMajor'].' </td><td>'.$r['tutorPhone'].' </td></tr>';
+				   print '<tr><td>'.$r['tutorFName'].'</td><td>'.$r['tutorLName'].'</td><td>'.$r['tutorSquadron'].'</td><td>'.$r['tutorMajor'].' </td><td>'.$r['tutorPhone'].' </td></tr>';
 			   }
              }
 

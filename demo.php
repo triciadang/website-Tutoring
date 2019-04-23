@@ -25,13 +25,12 @@
        <tr><th>Parameter</th><th>Value</th></tr>
        <tr><td>First Name</td><td><?php echo $_POST['firstName']; ?></td></tr>
        <tr><td>Last Name</td><td><?php echo $_POST['lastName']; ?></td></tr>
-       <tr><td>Major</td><td><?php echo $_POST['emailAddress']; ?></td></tr>
-       <tr><td>Rooom Number</td><td><?php echo $_POST['age']; ?></td></tr>
-       <tr><td>Building</td><td><?php echo $_POST['gender']; ?></td></tr>
-	   <tr><td>Phone Number</td><td><?php echo $_POST['gender']; ?></td></tr>
+       <tr><td>Major</td><td><?php echo $_POST['major']; ?></td></tr>
+       <tr><td>Room Number</td><td><?php echo $_POST['room']; ?></td></tr>
+       <tr><td>Building</td><td><?php echo $_POST['building']; ?></td></tr>
+	   <tr><td>Phone Number</td><td><?php echo $_POST['phoneNumber']; ?></td></tr>
 	   <tr><td>Email Address</td><td><?php echo $_POST['emailAddress']; ?></td></tr>
-	   <tr><td>Class Year</td><td><?php echo $_POST['c']; ?></td></tr>
-       <tr><td>Car Access</td><td>
+	   <tr><td>Class Year</td><td><?php echo $_POST['classYear']; ?></td></tr>
 	
 	 </td></tr>
      </table>

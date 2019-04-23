@@ -44,7 +44,7 @@
 				
 			// first names must be letter, spaces, and hyphens and 50 or fewer characters
 				var validInputValue = new Boolean(true);
-				var firstNameValue = document.forms["tutor_info"]["firstName"].value;
+				var firstNameValue = document.forms["volunteer_info"]["firstName"].value;
 				var myRegExp = new RegExp("^[a-zA-Z \-]{1,50}$");
 				
 			// Test our receivedValue string against the regular expression
@@ -63,7 +63,7 @@
 				}
 
 			// last names must be letter, spaces, and hyphens and 50 or fewer characters
-				var lastNameValue = document.forms["tutor_info"]["lastName"].value;
+				var lastNameValue = document.forms["volunteer_info"]["lastName"].value;
 				
 			// Test our receivedValue string against the regular expression
 				validInputValue = myRegExp.test(lastNameValue);  
@@ -81,7 +81,7 @@
 				}
 
 			// email address must be letters, digits, underscores, and periods with one @
-				var emailAddressValue = document.forms["tutor_info"]["emailAddress"].value;
+				var emailAddressValue = document.forms["volunteer_info"]["emailAddress"].value;
 				myRegExp = new RegExp("^[a-zA-Z0-9_.\-]+@[a-zA-Z0-9_.]+$");
 				
 			// Test our receivedValue string against the regular expression
@@ -104,7 +104,7 @@
 				// tricia trial
 				
 				// room must be 3C4
-				var roomValue = document.forms["tutor_info"]["room"].value;
+				var roomValue = document.forms["volunteer_info"]["room"].value;
 				myRegExp = new RegExp("^[1-6]+[A-Z]+[0-9]+$");
 				
 			// Test our receivedValue string against the regular expression
@@ -127,7 +127,7 @@
 				
 
 			// age must be numeric and in range of 17 to 29 inclusive
-				var ageValue = document.forms["tutor_info"]["age"].value;
+				var ageValue = document.forms["volunteer_info"]["age"].value;
 
 				myRegExp = new RegExp("^[0-9]{2}$");  // check that age is numeric
 				
@@ -149,7 +149,7 @@
 				}
 
 			// gender must be specified
-				if ((document.tutor_info.gender[0].checked) || (document.tutor_info.gender[1].checked)) 
+				if ((document.volunteer_info.gender[0].checked) || (document.volunteer_info.gender[1].checked)) 
 				{
 					document.getElementById('genderFeedback').innerHTML = "";
 				}
@@ -184,7 +184,7 @@
 							<br /><p><center>Sign Up to Be a Tutor!</center><p>
 						</div>
 						<center>
-							<form name="tutor_info" method="post" id="tutor_form" action="demo.php" onsubmit="return validateForm()">
+							<form name="volunteer_info" method="post" id="volunteer_form" action="demo.php" onsubmit="return validateForm()">
 								<h3>Enter your information and click Submit</h3>
 								<div id="formFeedback" class="formError"></div>
 								<table>
@@ -215,16 +215,45 @@
 											</select>
 											</td>
 										</tr>
+										
+																				<tr>
+										<td>Squadron: </td>
+										<td>
+										<select name="squadron">
+										  <option value=""></option>
+										  <option value="31">31</option>
+										  <option value="32">32</option>
+										  <option value="33">33</option>
+										  <option value="34">34</option>
+										  <option value="35">35</option>
+										  <option value="36">36</option>
+										  <option value="37">37</option>
+										  <option value="38">38</option>
+										  <option value="39">39</option>
+										  <option value="40">40</option>
+										</select>
+										</td>
+										</tr>
+										
 										<tr>
 											<td>Room Number: </td>
 											<td><input type="text" name="room" size="5" align="left"></input></td>
-											<td><div id="emailAddressFeedback" class="formError"></div></td>
+											<td><div id="roomFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
-											<td>Building: </td>
-											<td><input type="radio" name="building" value="vandy" align="left">Vandy</input>   <input type="radio" name="building" value="sijan" align="left">Sijan</input></td>
-											<td><div id="genderFeedback" class="formError"></div></td>
+											<td>Building:  </td>
+											<td>
+											<select name="building">
+											  <option value=""></option>
+											  <option value="Vandy">Vandy</option>
+											  <option value="Sijan">Sijan</option>
+											</select>
+											</td>
 										</tr>
+										
+										
+										
+										
 										<tr>
 											<td>Phone Number: </td>
 											<td><input type="text" name="phoneNumber" size="10" align="left"></input></td>
@@ -248,9 +277,22 @@
 											</td>
 										</tr>
 										
+										</table>
+										
+										<table class = "courseTable">
+										
+										<tr><td height="15"></td></tr>
+										
+										</table>
+										
+										<table>
 										<tr>						
-											<td>Core Courses You Can Tutor In:  </td>
+											<td><b>Core Courses You Can Tutor In:</b></td>
 										</tr>
+										<tr><td height="15"></td></tr>
+										</table>
+										
+										<table class="courseTable">
 										<tr>
 											<td><input type="checkbox" name="AeroEngr315" value="AeroEngr315" align="left">Aero Engr 315</input></td>
 											<td><input type="checkbox" name="AstroEngr310" value="AstroEngr310" align="left">Astro Engr 310</input></td>										
@@ -287,9 +329,16 @@
 											<td><div id="carAccessFeedback" class="formError"></div></td>
 										</tr>
 										
+										<tr><td height="15"></td></tr>
+												
+										<table>
 										<tr>
-										<td>Majors Courses Sorted By Department:</td>										
+										<td><b>Majors Courses (By Department):</b></td>										
 										</tr>
+										</table>
+										
+										<table class = "courseTable">
+										<tr><td height="15"></td></tr>
 										
 										<tr>
 										<td>Aeronautical Engineering (DFAN)</td>
@@ -324,6 +373,7 @@
 											<hr>
 										</tr>
 										
+										<tr><td height="15"></td></tr>
 										
 										<tr>
 										<td>Astronautical Engineering (DFAS)</td>
@@ -346,6 +396,7 @@
 											<td><input type="checkbox" name="AstroEngr543" value="AstroEngr543" align="left">Astro Engr 543</input></td>
 										</tr>											
 										
+										<tr><td height="15"></td></tr>
 						
 										<tr>
 										<td>Behavioral Sciences (DFBL)</td>
@@ -380,6 +431,8 @@
 											<td><input type="checkbox" name="BehSci473" value="BehSci473" align="left">Beh Sci 473</input></td>
 										</tr>	
 										
+										<tr><td height="15"></td></tr>
+										
 										<tr>
 										<td>Biology (DFB)</td>
 										</tr>
@@ -407,6 +460,8 @@
 										<tr>
 										<td><input type="checkbox" name="Bio481" value="Bio481" align="left">Bio 481</input></td>
 										</tr>
+										
+										<tr><td height="15"></td></tr>
 										
 										<tr>
 										<td>Chemistry (DFC)</td>
@@ -447,7 +502,7 @@
 											<td><input type="checkbox" name="Chem491" value="Chem491" align="left">Chem 491</input></td>
 										</tr>
 										
-										
+										<tr><td height="15"></td></tr>
 										
 										<tr>
 										<td>Civil Engineering (DFCE)</td>
@@ -492,6 +547,7 @@
 											<td><input type="checkbox" name="CivEngr492" value="CivEngr492" align="left">Civ Engr 492</input></td>	
 										</tr>
 										
+										<tr><td height="15"></td></tr>
 										
 										<tr>
 										<td>Computer Science & Cyber Science (DFCS)</td>
