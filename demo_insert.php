@@ -66,7 +66,7 @@
 
      // set up a prepared statement to insert the tutor info
 
-     $query = "INSERT INTO cadet (First_Name, Last_Name, Email_Address, Squadron_Number, Room_Number, Phone_Number, Major, Courses, classYear) 
+     $query = "INSERT INTO tutor.cadet (First_Name, Last_Name, Email_Address, Squadron_Number, Room_Number, Phone_Number, Major, Courses, Class_Year) 
 	           VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";  // question marks are parameter locations
 
      $stmt = $db->prepare($query);  // creates the Prepared Statement
@@ -91,17 +91,12 @@
        <tr><td>Major</td><td><?php echo $_POST['major']; ?></td></tr>
        <tr><td>Squadron</td><td><?php echo $_POST['squadron']; ?></td></tr>
 	   <tr><td>Room</td><td><?php echo $_POST['room']; ?></td></tr>
-       <tr><td>Building</td><td><?php echo $_POST['building']; ?></td></tr>
 	   <tr><td>Phone Number</td><td><?php echo $_POST['phoneNumber']; ?></td></tr>
 	   <tr><td>Email Address</td><td><?php echo $_POST['emailAddress']; ?></td></tr>
 	   <tr><td>Class Year</td><td><?php echo $_POST['classYear']; ?>
 	   <tr><td>Course List</td><td><?php 
 			if(!empty($_POST['course_list'])){
 				echo implode(", ",$_POST["course_list"]);
-			// Loop to store and display values of individual checked checkbox.
-				//foreach($_POST['course_list'] as $selected){
-					//echo $selected."</br>";
-				//}
 			}?>
 			
 	
