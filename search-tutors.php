@@ -60,7 +60,7 @@
 
              // run the SQL query to retrieve the service partner info
 
-             $results = $db->query('SELECT * FROM TUTORLIST');
+             $results = $db->query('SELECT * FROM cadet INNER JOIN squadron USING(Squadron_Number)');
 
              // determine how many rows were returned
 
@@ -94,18 +94,18 @@
              for ($i=0; $i < $num_results; $i++) 
              {
                $r= $results->fetch_assoc();
-			   if((($noFirstName == 0) OR (strcasecmp($r['tutorFName'],$_POST['firstName']) == 0)) AND 
-			   (($noLastName == 0) OR (strcasecmp($r['tutorLName'],$_POST['lastName']) == 0)) AND 
-			   (($noMajor == 0) OR (strcasecmp($r['tutorMajor'],$_POST['major']) == 0)) AND
-			   (($noSquadron == 0) OR (strcasecmp($r['tutorSquadron'],$_POST['squadron']) == 0)) AND
+			   if((($noFirstName == 0) OR (strcasecmp($r['First_Name'],$_POST['firstName']) == 0)) AND 
+			   (($noLastName == 0) OR (strcasecmp($r['Last_Name'],$_POST['lastName']) == 0)) AND 
+			   (($noMajor == 0) OR (strcasecmp($r['Major'],$_POST['major']) == 0)) AND
+			   (($noSquadron == 0) OR (strcasecmp($r['Squadron_Number'],$_POST['squadron']) == 0)) AND
 			   (($noFirstName+$noLastName+$noMajor+$noSquadron)>0))
 			   {
-				   print '<tr><td>'.$r['tutorFName'].'</td><td>'.$r['tutorLName'].'</td>
-				   <td>'.$r['tutorClassYear'].'</td><td>'.$r['tutorSquadron'].'</td>
-				   <td>'.$r['tutorBuilding'].'</td><td>'.$r['tutorRoomNumber'].'</td>
-				   <td>'.$r['tutorMajor'].'</td><td>'.$r['tutorEmail'].'</td>
-				   <td>'.$r['tutorPhone'].'</td></tr>';
-				   print '<tr><th>Courses:</th><td colspan="8">'.$r['tutorCouses'].'</td></tr>';//+' '.$r['tutorCourses'].'</tr>';
+				   print '<tr><td>'.$r['First_Name'].'</td><td>'.$r['Last_Name'].'</td>
+				   <td>'.$r['Class_Year'].'</td><td>'.$r['Squadron_Number'].'</td>
+				   <td>'.$r['Building'].'</td><td>'.$r['Room_Number'].'</td>
+				   <td>'.$r['Major'].'</td><td>'.$r['Email_Address'].'</td>
+				   <td>'.$r['Phone_Number'].'</td></tr>';
+				   print '<tr><th>Courses:</th><td colspan="8">'.$r['Courses'].'</td></tr>';
 			   }
              }
 

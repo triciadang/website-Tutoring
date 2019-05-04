@@ -37,7 +37,8 @@
            </div>
            <center>
            <table border="1" cellpadding="4">
-             <tr><th>First Name</th><th>Last Name</th><th>Major</th><th>Phone</th></tr>
+             <tr><th>First Name</th><th>Last Name</th><th>Class Year</th><th>Squadron</th><th>Building</th>
+			 <th>Room Number</th><th>Major</th><th>Email Address</th><th>Phone Number</th></tr>
 
 <!-- Note the use of <?php ?> to embed PHP commands 
      and connect to the database and retrieve the info -->
@@ -59,7 +60,7 @@
 
              // run the SQL query to retrieve the service partner info
 
-             $results = $db->query('SELECT * FROM TUTORLIST');
+             $results = $db->query('SELECT * FROM cadet INNER JOIN squadron USING(Squadron_Number)');
 
              // determine how many rows were returned
 
@@ -70,7 +71,12 @@
              for ($i=0; $i < $num_results; $i++) 
              {
                $r= $results->fetch_assoc();
-               print '<tr><td>'.$r['tutorFName'].'</td><td>'.$r['tutorLName'].'</td><td>'.$r['tutorMajor'].' </td><td>'.$r['tutorPhone'].' </td></tr>';
+               print '<tr><td>'.$r['First_Name'].'</td><td>'.$r['Last_Name'].'</td>
+				   <td>'.$r['Class_Year'].'</td><td>'.$r['Squadron_Number'].'</td>
+				   <td>'.$r['Building'].'</td><td>'.$r['Room_Number'].'</td>
+				   <td>'.$r['Major'].'</td><td>'.$r['Email_Address'].'</td>
+				   <td>'.$r['Phone_Number'].'</td></tr>';
+				   print '<tr><th>Courses:</th><td colspan="8">'.$r['Courses'].'</td></tr>';
              }
 
              // deallocate memory for the results and close the database connection
