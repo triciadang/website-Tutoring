@@ -23,9 +23,9 @@
      <?php 
 
      // open connection to the database on LOCALHOST with 
-     // userid of 'root', password '', and database 'csl'
+     // userid of 'root', password '', and database 'tutor'
 
-     @ $db = new mysqli('LOCALHOST', 'root', '', 'tutor');
+     @ $db = new mysqli("localhost", "root", "", "tutor");
 
      // Check if there were error and if so, report and exit
 
@@ -36,6 +36,19 @@
      }
 
      // sanitize the input from the form to eliminate possible SQL Injection
+	 
+	 $haveRoom = true;
+	 $havePhoneNumber = true;
+	 
+	 if(strcasecmp($_POST['room'],'')==0)
+	 {
+		 $haveRoom = false;
+	 }
+	 if(strcasecmp($_POST['phoneNumber'],'')==0)
+	 {
+		 $havePhoneNumber = false;
+	 }
+	 
 
 	$firstName = stripslashes($_POST['firstName']);
     $firstName = $db->real_escape_string($firstName);
@@ -48,10 +61,10 @@
 
 	$squadron = stripslashes($_POST['squadron']);
 	$squadron = $db->real_escape_string($squadron);
-	
+		
 	$room = stripslashes($_POST['room']);
 	$room = $db->real_escape_string($room);
-	
+		
 	$phoneNumber = stripslashes($_POST['phoneNumber']);
 	$phoneNumber = $db->real_escape_string($phoneNumber);
 	
@@ -64,18 +77,34 @@
 	$courseList = implode(", ",$_POST["course_list"]);
 
 
-     // set up a prepared statement to insert the tutor info
-
-     $query = "INSERT INTO tutor.cadet (First_Name, Last_Name, Email_Address, Squadron_Number, Room_Number, Phone_Number, Major, Courses, Class_Year) 
-	           VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";  // question marks are parameter locations
-
-     $stmt = $db->prepare($query);  // creates the Prepared Statement
-
-	 // binds the parameters of Prepared Statement to corresponding variables
-	 // first argument, "sssiss", gives the parameter data types of 3 strings, an int, 2 strings
-     $stmt->bind_param("sssisissi", $firstName, $lastName, $emailAddress, $squadron, $room, 
-										$phoneNumber, $major, $courseList, $classYear);
-
+     // set up a prepared statement to insert the tutor info and account for NULL inputs
+	 
+	  if($havePhoneNumber AND $haveRoom){
+		 $query = "INSERT INTO tutor.cadet (First_Name, Last_Name, Email_Address, Squadron_Number, Room_Number, Phone_Number, Major, Class_Year, Courses) 
+	 			   VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";  // question marks are parameter locations
+	     $stmt = $db->prepare($query);  // creates the Prepared Statement
+		 $stmt->bind_param("sssisssis", $firstName, $lastName, $emailAddress, $squadron, $room, 
+										$phoneNumber, $major, $classYear, $courseList);
+	 } else if($havePhoneNumber){
+		 $query = "INSERT INTO tutor.cadet (First_Name, Last_Name, Email_Address, Squadron_Number, Phone_Number, Major, Class_Year, Courses) 
+	 			   VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";  // question marks are parameter locations
+	     $stmt = $db->prepare($query);  // creates the Prepared Statement
+		 $stmt->bind_param("sssissis", $firstName, $lastName, $emailAddress, $squadron, 
+										$phoneNumber, $major, $classYear, $courseList);
+	 } else if($haveRoom){
+		 $query = "INSERT INTO tutor.cadet (First_Name, Last_Name, Email_Address, Squadron_Number, Room_Number, Major, Class_Year, Courses) 
+	 			   VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";  // question marks are parameter locations
+	     $stmt = $db->prepare($query);  // creates the Prepared Statement
+		 $stmt->bind_param("sssissis", $firstName, $lastName, $emailAddress, $squadron, $room, 
+										$major, $classYear, $courseList);
+	 } else{
+		 $query = 'INSERT INTO tutor.cadet (First_Name, Last_Name, Email_Address, Squadron_Number, Major, Class_Year, Courses) 
+	           VALUES ( ?, ?, ?, ?, ?, ?, ?)';  // question marks are parameter locations
+		 $stmt = $db->prepare($query);  // creates the Prepared Statement
+		 $stmt->bind_param("sssisis", $firstName, $lastName, $emailAddress, $squadron,
+										$major, $classYear, $courseList);
+	 }
+	 
      $stmt->execute();  // runs the Prepared Statement query
 
      echo $stmt->affected_rows.' records inserted.<br/><br/>';  // report results
