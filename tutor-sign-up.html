@@ -62,7 +62,7 @@
 					document.getElementById('firstNameFeedback').innerHTML = "Error #" + errorCount;
 				}
 
-			// last names must be letter, spaces, and hyphens and 50 or fewer characters
+			// Last names must be letter, spaces, and hyphens and 50 or fewer characters
 				var lastNameValue = document.forms["tutor_info"]["lastName"].value;
 				
 			// Test our receivedValue string against the regular expression
@@ -128,21 +128,6 @@
 					validForm = false;
 					displayError("Room Number must be in a form like 3C10 or 6A100");
 					document.getElementById('roomFeedback').innerHTML = "Error #" + errorCount;
-				}
-				
-			// Building must be inputted
-				var buildingValue = document.forms["tutor_info"]["building"].value;
-			
-			// Update form feedback
-				if (buildingValue.length > 0) 
-				{
-					document.getElementById('buildingFeedback').innerHTML = "";
-				}
-				else
-				{
-					validForm = false;
-					displayError("Choose a building");
-					document.getElementById('buildingFeedback').innerHTML = "Error #" + errorCount;
 				}
 				
 			// Phone Number should be 10 numbers or nothing
@@ -215,10 +200,7 @@
 				//	document.getElementById('courseListFeedback').innerHTML = "Error #" + errorCount;
 				//}
 				
-				
-				
 				return validForm;
-				//tricia trial
 				
 			}
 		</script>		
@@ -303,17 +285,6 @@
 											<td><input type="text" name="room" size="5" align="left"></input></td>
 											<td><div id="roomFeedback" class="formError"></div></td>
 										</tr>
-										<tr>
-											<td>Building*:  </td>
-											<td>
-											<select name="building">
-											  <option value=""></option>
-											  <option value="Vandy">Vandy</option>
-											  <option value="Sijan">Sijan</option>
-											</select>
-											</td>
-											<td><div id="buildingFeedback" class="formError"></div></td>
-										</tr
 										
 										<tr>
 											<td>Phone Number: </td>
