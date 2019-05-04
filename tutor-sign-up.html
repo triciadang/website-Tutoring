@@ -80,7 +80,92 @@
 					document.getElementById('lastNameFeedback').innerHTML = "Error #" + errorCount;
 				}
 
-			// email address must be letters, digits, underscores, and periods with one @
+			// Ensure major is chosen
+				var majorValue = document.forms["tutor_info"]["major"].value;
+				
+			// Update form feedback
+				if (majorValue.length > 0) 
+				{
+					document.getElementById('roomFeedback').innerHTML = "";
+				}
+				else
+				{
+					validForm = false;
+					displayError("Choose a major");
+					document.getElementById('majorFeedback').innerHTML = "Error #" + errorCount;
+				}
+				
+			// Ensure squadron is chosen
+				var squadronValue = document.forms["tutor_info"]["squadron"].value;
+				
+			// Update form feedback
+				if (squadronValue.length > 0) 
+				{
+					document.getElementById('squadronFeedback').innerHTML = "";
+				}
+				else
+				{
+					validForm = false;
+					displayError("Choose a squadron");
+					document.getElementById('squadronFeedback').innerHTML = "Error #" + errorCount;
+				}
+				
+								
+			// Room must be 3C4
+				var roomValue = document.forms["tutor_info"]["room"].value;
+				myRegExp = new RegExp("^[1-6]+[A-Z]+[0-9]+$");
+				
+			// Test our receivedValue string against the regular expression
+				validInputValue = myRegExp.test(emailAddressValue);  
+				
+			// Update form feedback
+				if (validInputValue || roomValue.length == 0) 
+				{
+					document.getElementById('roomFeedback').innerHTML = "";
+				}
+				else
+				{
+					validForm = false;
+					displayError("Room Number must be in the form 3C10 or 6A100");
+					document.getElementById('roomFeedback').innerHTML = "Error #" + errorCount;
+				}
+				
+			// Building must be inputted
+				var buildingValue = document.forms["tutor_info"]["building"].value;
+			
+			// Update form feedback
+				if (buildingValue.length > 0) 
+				{
+					document.getElementById('emailAddressFeedback').innerHTML = "";
+				}
+				else
+				{
+					validForm = false;
+					displayError("Choose a building");
+					document.getElementById('buildingFeedback').innerHTML = "Error #" + errorCount;
+				}
+				
+			// Phone Number should be 10 numbers or nothing
+				var phoneValue = document.forms["tutor_info"]["phoneNumber"].value;
+				myRegExp = new RegExp("^[0-9]{10}$");
+
+			// Test our receivedValue string against the regular expression
+				validInputValue = myRegExp.test(phoneValue);  
+				
+			// Update form feedback
+				if (validInputValue || phoneValue.length == 0) 
+				{
+					document.getElementById('phoneFeedback').innerHTML = "";
+				}
+				else
+				{
+					validForm = false;
+					displayError("Phone number should be in the form XXXXXXXXXX");
+					document.getElementById('phoneFeedback').innerHTML = "Error #" + errorCount;
+				}
+				
+				
+			// Email Address must be letters, digits, underscores, and periods with one @
 				var emailAddressValue = document.forms["tutor_info"]["emailAddress"].value;
 				myRegExp = new RegExp("^[a-zA-Z0-9_.\-]+@[a-zA-Z0-9_.]+$");
 				
@@ -99,28 +184,36 @@
 					document.getElementById('emailAddressFeedback').innerHTML = "Error #" + errorCount;
 				}
 				
-				
-				
-				// tricia trial
-				
-				// room must be 3C4
-				var roomValue = document.forms["tutor_info"]["room"].value;
-				myRegExp = new RegExp("^[1-6]+[A-Z]+[0-9]+$");
-				
-			// Test our receivedValue string against the regular expression
-				validInputValue = myRegExp.test(emailAddressValue);  
-				
+			// Class year must be inputted
+				var classYearValue = document.forms["tutor_info"]["classYear"].value;
+			
 			// Update form feedback
-				if (validInputValue) 
+				if (classYearValue.length > 0) 
 				{
-					document.getElementById('roomFeedback').innerHTML = "";
+					document.getElementById('classYearFeedback').innerHTML = "";
 				}
 				else
 				{
 					validForm = false;
-					displayError("Room Number must be in the form 3C10 or 6A100");
-					document.getElementById('roomFeedback').innerHTML = "Error #" + errorCount;
+					displayError("Choose your class year");
+					document.getElementById('classYearFeedback').innerHTML = "Error #" + errorCount;
 				}
+						
+						
+			// Course List must be inputted
+				//var courseListValue = document.forms["tutor_info"]["course_list[0]"].value;
+			
+			// Update form feedback
+				//if (document.forms["tutor_info"]["course_list[0]"].length > 0) 
+				//{
+				//	document.getElementById('courseListFeedback').innerHTML = "";
+				//}
+				//else
+				//{
+				//	validForm = false;
+				//	displayError("Choose the courses you can tutor");
+				//	document.getElementById('courseListFeedback').innerHTML = "Error #" + errorCount;
+				//}
 				
 				
 				
@@ -152,21 +245,23 @@
 						<center>
 							<form name="tutor_info" method="post" id="tutor_form" action="demo_insert.php" onsubmit="return validateForm()">
 								<h3>Enter your information and click Submit</h3>
+								<h4>*Required </h4>
+								
 								<div id="formFeedback" class="formError"></div>
 								<table>
 									<tbody>
 										<tr>
-											<td>First Name: </td>
+											<td>First Name*: </td>
 											<td><input type="text" name="firstName" maxlength="50" size="50" align="left"></input></td>
 											<td><div id="firstNameFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
-											<td>Last Name: </td>
+											<td>Last Name*: </td>
 											<td><input type="text" name="lastName" maxlength="50" size="50" align="left"></input></td>
 											<td><div id="lastNameFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
-											<td>Major:  </td>
+											<td>Major*:  </td>
 											<td>
 											<select name="major">
 											  <option value=""></option>
@@ -183,8 +278,8 @@
 											<td><div id = "majorFeedback" class="formError"></div></td>
 										</tr>
 										
-																				<tr>
-										<td>Squadron: </td>
+										<tr>
+										<td>Squadron*: </td>
 										<td>
 										<select name="squadron">
 										  <option value=""></option>
@@ -200,6 +295,7 @@
 										  <option value="40">40</option>
 										</select>
 										</td>
+										<td><div id = "squadronFeedback" class="formError"></div></td>
 										</tr>
 										
 										<tr>
@@ -208,7 +304,7 @@
 											<td><div id="roomFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
-											<td>Building:  </td>
+											<td>Building*:  </td>
 											<td>
 											<select name="building">
 											  <option value=""></option>
@@ -216,23 +312,21 @@
 											  <option value="Sijan">Sijan</option>
 											</select>
 											</td>
-										</tr>
-										
-										
-										
+											<td><div id="buildingFeedback" class="formError"></div></td>
+										</tr
 										
 										<tr>
 											<td>Phone Number: </td>
 											<td><input type="text" name="phoneNumber" size="10" align="left"></input></td>
-											<td><div id="roomFeedback" class="formError"></div></td>
+											<td><div id="phoneFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
-											<td>Email Address: </td>
+											<td>Email Address*: </td>
 											<td><input type="text" name="emailAddress" size="50" align="left"></input></td>
 											<td><div id="emailAddressFeedback" class="formError"></div></td>
 										</tr>
 										<tr>
-											<td>Class Year:  </td>
+											<td>Class Year*:  </td>
 											<td>
 											<select name="classYear">
 											  <option value=""></option>
@@ -242,6 +336,7 @@
 											  <option value="2022">2022</option>
 											</select>
 											</td>
+											<td><div id="classYearFeedback" class="formError"></div></td>
 										</tr>
 										
 										</table>
@@ -261,39 +356,38 @@
 										
 										<table class="courseTable">
 										<tr>
-											<td><input type="checkbox" name="AeroEngr315" value="AeroEngr315" align="left">Aero Engr 315</input></td>
-											<td><input type="checkbox" name="AstroEngr310" value="AstroEngr310" align="left">Astro Engr 310</input></td>										
-											<td><input type="checkbox" name="BehSci110" value="BehSci110" align="left">Beh Sci 110</input></td>
-											<td><input type="checkbox" name="Biology215" value="Biology215" align="left">Bio 215</input></td>
-											<td><input type="checkbox" name="Chem100" value="Chem100" align="left">Chem 100</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr315" align="left">Aero Engr 315</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AstroEngr310" align="left">Astro Engr 310</input></td>										
+											<td><input type="checkbox" name="course_list[]" value="BehSci110" align="left">Beh Sci 110</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Biology215" align="left">Bio 215</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Chem100" align="left">Chem 100</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="Chem200" value="Chem200" align="left">Chem 200</input></td>
-											<td><input type="checkbox" name="CompSci110" value="CompSci110" align="left">Comp Sci 110</input></td>
-											<td><input type="checkbox" name="ECE315" value="ECE315" align="left">ECE 315</input></td>
-											<td><input type="checkbox" name="Econ201" value="Econ201" align="left">Econ 201</input></td>
-											<td><input type="checkbox" name="English111" value="English111" align="left">English 111</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem200" align="left">Chem 200</input></td>
+											<td><input type="checkbox" name="course_list[]" value="CompSci110" align="left">Comp Sci 110</input></td>
+											<td><input type="checkbox" name="course_list[]" value="ECE315" align="left">ECE 315</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Econ201" align="left">Econ 201</input></td>
+											<td><input type="checkbox" name="course_list[]" value="English111" align="left">English 111</input></td>	
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="English211" value="English211" align="left">English 211</input></td>
-											<td><input type="checkbox" name="EngrMech220" value="EngrMech220" align="left">Engr Mech 220</input></td>
-											<td><input type="checkbox" name="History100" value="History100" align="left">History 100</input></td>	
-											<td><input type="checkbox" name="History300" value="History300" align="left">History 300</input></td>
-											<td><input type="checkbox" name="Law220" value="Law220" align="left">Law 220</input></td>
+											<td><input type="checkbox" name="course_list[]" value="English211" align="left">English 211</input></td>
+											<td><input type="checkbox" name="course_list[]" value="EngrMech220" align="left">Engr Mech 220</input></td>
+											<td><input type="checkbox" name="course_list[]" value="History100" align="left">History 100</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="History300" align="left">History 300</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Law220" align="left">Law 220</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="Math141" value="Math141" align="left">Math 141</input></td>
-											<td><input type="checkbox" name="Math142" value="Math142" align="left">Math 142</input></td>
-											<td><input type="checkbox" name="Math152" value="Math152" align="left">Math 152</input></td>
-											<td><input type="checkbox" name="Math300" value="Math300" align="left">Math 300</input></td>
-											<td><input type="checkbox" name="Mgt300" value="Mgt400" align="left">Mgt 400</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Math141" align="left">Math 141</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Math142" align="left">Math 142</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Math152" align="left">Math 152</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Math300" align="left">Math 300</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Mgt400" align="left">Mgt 400</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="MSS415" value="MSS415" align="left">MSS 415</input></td>
-											<td><input type="checkbox" name="Philos310" value="Philos310" align="left">Philos 310</input></td>
-											<td><input type="checkbox" name="Physics110" value="Physics110" align="left">Physics 110</input></td>
-											<td><input type="checkbox" name="PolSci211" value="PolSci211" align="left">Pol Sci 211</input></td>										
-											<td><div id="carAccessFeedback" class="formError"></div></td>
+											<td><input type="checkbox" name="course_list[]" value="MSS415" align="left">MSS 415</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Philos310" align="left">Philos 310</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Physics110" align="left">Physics 110</input></td>
+											<td><input type="checkbox" name="course_list[]" value="PolSci211" align="left">Pol Sci 211</input></td>										
 										</tr>
 										
 										<tr><td height="15"></td></tr>
@@ -311,32 +405,32 @@
 										<td>Aeronautical Engineering (DFAN)</td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="AeroEngr241" value="AeroEngr241" align="left">Aero Engr 241</input></td>
-											<td><input type="checkbox" name="AeroEngr341" value="AeroEngr341" align="left">Aero Engr 341</input></td>										
-											<td><input type="checkbox" name="AeroEngr342" value="AeroEngr342" align="left">Aero Engr 342</input></td>
-											<td><input type="checkbox" name="AeroEngr351" value="AeroEngr351" align="left">Aero Engr 351</input></td>
-											<td><input type="checkbox" name="AeroEngr352" value="AeroEngr352" align="left">Aero Engr 352</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr241" align="left">Aero Engr 241</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr341" align="left">Aero Engr 341</input></td>										
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr342" align="left">Aero Engr 342</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr351" align="left">Aero Engr 351</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr352" align="left">Aero Engr 352</input></td>
 											<hr>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="AeroEngr361" value="AeroEngr361" align="left">Aero Engr 361</input></td>
-											<td><input type="checkbox" name="AeroEngr436" value="AeroEngr436" align="left">Aero Engr 436</input></td>										
-											<td><input type="checkbox" name="AeroEngr442" value="AeroEngr442" align="left">Aero Engr 442</input></td>
-											<td><input type="checkbox" name="AeroEngr446" value="AeroEngr446" align="left">Aero Engr 446</input></td>
-											<td><input type="checkbox" name="AeroEngr447" value="AeroEngr447" align="left">Aero Engr 447</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr361" align="left">Aero Engr 361</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr436" align="left">Aero Engr 436</input></td>										
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr442" align="left">Aero Engr 442</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr446" align="left">Aero Engr 446</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr447" align="left">Aero Engr 447</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="AeroEngr456" value="AeroEngr456" align="left">Aero Engr 456</input></td>
-											<td><input type="checkbox" name="AeroEngr457" value="AeroEngr457" align="left">Aero Engr 457</input></td>
-											<td><input type="checkbox" name="AeroEngr466" value="AeroEngr466" align="left">Aero Engr 466</input></td>
-											<td><input type="checkbox" name="AeroEngr471" value="AeroEngr471" align="left">Aero Engr 471</input></td>
-											<td><input type="checkbox" name="AeroEngr472" value="AeroEngr472" align="left">Aero Engr 472</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr456" align="left">Aero Engr 456</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr457" align="left">Aero Engr 457</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr466" align="left">Aero Engr 466</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr471" align="left">Aero Engr 471</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr472" align="left">Aero Engr 472</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="AeroEngr481" value="AeroEngr481" align="left">Aero Engr 481</input></td>
-											<td><input type="checkbox" name="AeroEngr482" value="AeroEngr482" align="left">Aero Engr 482</input></td>
-											<td><input type="checkbox" name="AeroEngr483" value="AeroEngr483" align="left">Aero Engr 483</input></td>
-											<td><input type="checkbox" name="AeroEngr483" value="AeroEngr483" align="left">Aero Engr 483</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr481" align="left">Aero Engr 481</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr482" align="left">Aero Engr 482</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr483" align="left">Aero Engr 483</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AeroEngr483" align="left">Aero Engr 483</input></td>
 											<hr>
 										</tr>
 										
@@ -346,21 +440,21 @@
 										<td>Astronautical Engineering (DFAS)</td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="AstroEngr201" value="AstroEngr201" align="left">Astro Engr 201</input></td>
-											<td><input type="checkbox" name="AstroEngr321" value="AstroEngr321" align="left">Astro Engr 321</input></td>										
-											<td><input type="checkbox" name="AstroEngr331" value="AstroEngr331" align="left">Astro Engr 331</input></td>
-											<td><input type="checkbox" name="AstroEngr335" value="AstroEngr335" align="left">Astro Engr 335</input></td>
-											<td><input type="checkbox" name="AstroEngr351" value="AstroEngr351" align="left">Astro Engr 351</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AstroEngr201" align="left">Astro Engr 201</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AstroEngr321" align="left">Astro Engr 321</input></td>										
+											<td><input type="checkbox" name="course_list[]" value="AstroEngr331" align="left">Astro Engr 331</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AstroEngr335" align="left">Astro Engr 335</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AstroEngr351" align="left">Astro Engr 351</input></td>
 										</tr>		
 										<tr>
-											<td><input type="checkbox" name="AstroEngr422" value="AstroEngr422" align="left">Astro Engr 422</input></td>
-											<td><input type="checkbox" name="AstroEngr423" value="AstroEngr423" align="left">Astro Engr 423</input></td>										
-											<td><input type="checkbox" name="AstroEngr436" value="AstroEngr436" align="left">Astro Engr 436</input></td>
-											<td><input type="checkbox" name="AstroEngr437" value="AstroEngr437" align="left">Astro Engr 437</input></td>
-											<td><input type="checkbox" name="AstroEngr445" value="AstroEngr445" align="left">Astro Engr 445</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AstroEngr422" align="left">Astro Engr 422</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AstroEngr423" align="left">Astro Engr 423</input></td>										
+											<td><input type="checkbox" name="course_list[]" value="AstroEngr436" align="left">Astro Engr 436</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AstroEngr437" align="left">Astro Engr 437</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AstroEngr445" align="left">Astro Engr 445</input></td>
 										</tr>	
 										<tr>
-											<td><input type="checkbox" name="AstroEngr543" value="AstroEngr543" align="left">Astro Engr 543</input></td>
+											<td><input type="checkbox" name="course_list[]" value="AstroEngr543" align="left">Astro Engr 543</input></td>
 										</tr>											
 										
 										<tr><td height="15"></td></tr>
@@ -369,33 +463,33 @@
 										<td>Behavioral Sciences (DFBL)</td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="BehSci231" value="BehSci231" align="left">Beh Sci 201</input></td>
-											<td><input type="checkbox" name="BehSci330" value="BehSci330" align="left">Beh Sci 330</input></td>										
-											<td><input type="checkbox" name="BehSci332" value="BehSci332" align="left">Beh Sci 332</input></td>
-											<td><input type="checkbox" name="BehSci335" value="BehSci335" align="left">Beh Sci 335</input></td>
-											<td><input type="checkbox" name="BehSci352" value="BehSci352" align="left">Beh Sci 352</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci231" align="left">Beh Sci 201</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci330" align="left">Beh Sci 330</input></td>										
+											<td><input type="checkbox" name="course_list[]" value="BehSci332" align="left">Beh Sci 332</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci335" align="left">Beh Sci 335</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci352" align="left">Beh Sci 352</input></td>
 										</tr>	
 										<tr>
-											<td><input type="checkbox" name="BehSci355" value="BehSci355" align="left">Beh Sci 355</input></td>
-											<td><input type="checkbox" name="BehSci358" value="BehSci358" align="left">Beh Sci 358</input></td>										
-											<td><input type="checkbox" name="BehSci360" value="BehSci360" align="left">Beh Sci 360</input></td>
-											<td><input type="checkbox" name="BehSci362" value="BehSci362" align="left">Beh Sci 362</input></td>
-											<td><input type="checkbox" name="BehSci364" value="BehSci364" align="left">Beh Sci 364</input></td>
-										</tr>	
-										
-										<tr>
-											<td><input type="checkbox" name="BehSci373" value="BehSci373" align="left">Beh Sci 373</input></td>
-											<td><input type="checkbox" name="BehSci375" value="BehSci375" align="left">Beh Sci 375</input></td>										
-											<td><input type="checkbox" name="BehSci377" value="BehSci377" align="left">Beh Sci 377</input></td>
-											<td><input type="checkbox" name="BehSci380" value="BehSci380" align="left">Beh Sci 380</input></td>
-											<td><input type="checkbox" name="BehSci390" value="BehSci390" align="left">Beh Sci 390</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci355" align="left">Beh Sci 355</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci358" align="left">Beh Sci 358</input></td>										
+											<td><input type="checkbox" name="course_list[]" value="BehSci360" align="left">Beh Sci 360</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci362" align="left">Beh Sci 362</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci364" align="left">Beh Sci 364</input></td>
 										</tr>	
 										
 										<tr>
-											<td><input type="checkbox" name="BehSci410" value="BehSci410" align="left">Beh Sci 410</input></td>
-											<td><input type="checkbox" name="BehSci440" value="BehSci440" align="left">Beh Sci 440</input></td>										
-											<td><input type="checkbox" name="BehSci471" value="BehSci471" align="left">Beh Sci 471</input></td>
-											<td><input type="checkbox" name="BehSci473" value="BehSci473" align="left">Beh Sci 473</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci373" align="left">Beh Sci 373</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci375" align="left">Beh Sci 375</input></td>										
+											<td><input type="checkbox" name="course_list[]" value="BehSci377" align="left">Beh Sci 377</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci380" align="left">Beh Sci 380</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci390" align="left">Beh Sci 390</input></td>
+										</tr>	
+										
+										<tr>
+											<td><input type="checkbox" name="course_list[]" value="BehSci410" align="left">Beh Sci 410</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci440" align="left">Beh Sci 440</input></td>										
+											<td><input type="checkbox" name="course_list[]" value="BehSci471" align="left">Beh Sci 471</input></td>
+											<td><input type="checkbox" name="course_list[]" value="BehSci473" align="left">Beh Sci 473</input></td>
 										</tr>	
 										
 										<tr><td height="15"></td></tr>
@@ -404,28 +498,28 @@
 										<td>Biology (DFB)</td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="Bio320" value="Bio320" align="left">Bio 320</input></td>	
-											<td><input type="checkbox" name="Bio330" value="Bio330" align="left">Bio 330</input></td>	
-											<td><input type="checkbox" name="Bio331" value="Bio331" align="left">Bio 331</input></td>	
-											<td><input type="checkbox" name="Bio332" value="Bio332" align="left">Bio 332</input></td>	
-											<td><input type="checkbox" name="Bio345" value="Bio345" align="left">Bio 345</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio320" align="left">Bio 320</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio330" align="left">Bio 330</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio331" align="left">Bio 331</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio332" align="left">Bio 332</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio345" align="left">Bio 345</input></td>	
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="Bio360" value="Bio360" align="left">Bio 360</input></td>	
-											<td><input type="checkbox" name="Bio363" value="Bio363" align="left">Bio 363</input></td>	
-											<td><input type="checkbox" name="Bio364" value="Bio364" align="left">Bio 364</input></td>	
-											<td><input type="checkbox" name="Bio370" value="Bio370" align="left">Bio 370</input></td>	
-											<td><input type="checkbox" name="Bio380" value="Bio380" align="left">Bio 380</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio360" align="left">Bio 360</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio363" align="left">Bio 363</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio364" align="left">Bio 364</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio370" align="left">Bio 370</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio380" align="left">Bio 380</input></td>	
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="Bio410" value="Bio410" align="left">Bio 410</input></td>	
-											<td><input type="checkbox" name="Bio430" value="Bio430" align="left">Bio 430</input></td>	
-											<td><input type="checkbox" name="Bio431" value="Bio431" align="left">Bio 431</input></td>	
-											<td><input type="checkbox" name="Bio440" value="Bio440" align="left">Bio 440</input></td>	
-											<td><input type="checkbox" name="Bio459" value="Bio459" align="left">Bio 459</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio410" align="left">Bio 410</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio430" align="left">Bio 430</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio431" align="left">Bio 431</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio440" align="left">Bio 440</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Bio459" align="left">Bio 459</input></td>	
 										</tr>
 										<tr>
-										<td><input type="checkbox" name="Bio481" value="Bio481" align="left">Bio 481</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Bio481" align="left">Bio 481</input></td>
 										</tr>
 										
 										<tr><td height="15"></td></tr>
@@ -434,39 +528,39 @@
 										<td>Chemistry (DFC)</td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="Chem222" value="Chem222" align="left">Chem 222</input></td>	
-											<td><input type="checkbox" name="Chem230" value="Chem230" align="left">Chem 230</input></td>	
-											<td><input type="checkbox" name="Chem233" value="Chem233" align="left">Chem 233</input></td>	
-											<td><input type="checkbox" name="Chem234" value="Chem234" align="left">Chem 234</input></td>	
-											<td><input type="checkbox" name="Chem243" value="Chem243" align="left">Chem 243</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Chem222" align="left">Chem 222</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem230" align="left">Chem 230</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem233" align="left">Chem 233</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem234" align="left">Chem 234</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem243" align="left">Chem 243</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="Chem325" value="Chem325" align="left">Chem 325</input></td>	
-											<td><input type="checkbox" name="Chem335" value="Chem335" align="left">Chem 335</input></td>	
-											<td><input type="checkbox" name="Chem336" value="Chem336" align="left">Chem 336</input></td>	
-											<td><input type="checkbox" name="Chem344" value="Chem344" align="left">Chem 344</input></td>	
-											<td><input type="checkbox" name="Chem350" value="Chem350" align="left">Chem 350</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Chem325" align="left">Chem 325</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem335" align="left">Chem 335</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem336" align="left">Chem 336</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem344" align="left">Chem 344</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem350" align="left">Chem 350</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="Chem353" value="Chem353" align="left">Chem 353</input></td>	
-											<td><input type="checkbox" name="Chem381" value="Chem381" align="left">Chem 381</input></td>	
-											<td><input type="checkbox" name="Chem399" value="Chem399" align="left">Chem 399</input></td>	
-											<td><input type="checkbox" name="Chem431" value="Chem431" align="left">Chem 431</input></td>	
-											<td><input type="checkbox" name="Chem432" value="Chem432" align="left">Chem 432</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Chem353" align="left">Chem 353</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem381" align="left">Chem 381</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem399" align="left">Chem 399</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem431" align="left">Chem 431</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem432" align="left">Chem 432</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="Chem433" value="Chem433" align="left">Chem 433</input></td>	
-											<td><input type="checkbox" name="Chem434" value="Chem434" align="left">Chem 434</input></td>	
-											<td><input type="checkbox" name="Chem435" value="Chem435" align="left">Chem 435</input></td>	
-											<td><input type="checkbox" name="Chem440" value="Chem440" align="left">Chem 440</input></td>	
-											<td><input type="checkbox" name="Chem444" value="Chem444" align="left">Chem 444</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Chem433" align="left">Chem 433</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem434" align="left">Chem 434</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem435" align="left">Chem 435</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem440" align="left">Chem 440</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem444" align="left">Chem 444</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="Chem445" value="Chem445" align="left">Chem 445</input></td>	
-											<td><input type="checkbox" name="Chem465" value="Chem465" align="left">Chem 465</input></td>	
-											<td><input type="checkbox" name="Chem481" value="Chem481" align="left">Chem 481</input></td>	
-											<td><input type="checkbox" name="Chem482" value="Chem482" align="left">Chem 482</input></td>	
-											<td><input type="checkbox" name="Chem491" value="Chem491" align="left">Chem 491</input></td>
+											<td><input type="checkbox" name="course_list[]" value="Chem445" align="left">Chem 445</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem465" align="left">Chem 465</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem481" align="left">Chem 481</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem482" align="left">Chem 482</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="Chem491" align="left">Chem 491</input></td>
 										</tr>
 										
 										<tr><td height="15"></td></tr>
@@ -475,43 +569,43 @@
 										<td>Civil Engineering (DFCE)</td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="CivEngr215" value="CivEngr215" align="left">Civ Engr 215</input></td>	
-											<td><input type="checkbox" name="CivEngr330" value="CivEngr330" align="left">Civ Engr 330</input></td>	
-											<td><input type="checkbox" name="CivEngr351" value="CivEngr351" align="left">Civ Engr 351</input></td>	
-											<td><input type="checkbox" name="CivEngr352" value="CivEngr352" align="left">Civ Engr 352</input></td>												
-											<td><input type="checkbox" name="CivEngr355" value="CivEngr355" align="left">Civ Engr 355</input></td>
+											<td><input type="checkbox" name="course_list[]" value="CivEngr215" align="left">Civ Engr 215</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr330" align="left">Civ Engr 330</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr351" align="left">Civ Engr 351</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr352" align="left">Civ Engr 352</input></td>												
+											<td><input type="checkbox" name="course_list[]" value="CivEngr355" align="left">Civ Engr 355</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="CivEngr356" value="CivEngr356" align="left">Civ Engr 356</input></td>	
-											<td><input type="checkbox" name="CivEngr361" value="CivEngr361" align="left">Civ Engr 361</input></td>	
-											<td><input type="checkbox" name="CivEngr362" value="CivEngr362" align="left">Civ Engr 362</input></td>	
-											<td><input type="checkbox" name="CivEngr365" value="CivEngr365" align="left">Civ Engr 365</input></td>												
-											<td><input type="checkbox" name="CivEngr372" value="CivEngr372" align="left">Civ Engr 372</input></td>
+											<td><input type="checkbox" name="course_list[]" value="CivEngr356" align="left">Civ Engr 356</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr361" align="left">Civ Engr 361</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr362" align="left">Civ Engr 362</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr365" align="left">Civ Engr 365</input></td>												
+											<td><input type="checkbox" name="course_list[]" value="CivEngr372" align="left">Civ Engr 372</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="CivEngr373" value="CivEngr373" align="left">Civ Engr 373</input></td>	
-											<td><input type="checkbox" name="CivEngr390" value="CivEngr390" align="left">Civ Engr 390</input></td>	
-											<td><input type="checkbox" name="CivEngr351" value="CivEngr351" align="left">Civ Engr 351</input></td>	
-											<td><input type="checkbox" name="CivEngr352" value="CivEngr352" align="left">Civ Engr 352</input></td>												
-											<td><input type="checkbox" name="CivEngr405" value="CivEngr405" align="left">Civ Engr 405</input></td>
+											<td><input type="checkbox" name="course_list[]" value="CivEngr373" align="left">Civ Engr 373</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr390" align="left">Civ Engr 390</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr351" align="left">Civ Engr 351</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr352" align="left">Civ Engr 352</input></td>												
+											<td><input type="checkbox" name="course_list[]" value="CivEngr405" align="left">Civ Engr 405</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="CivEngr461" value="CivEngr461" align="left">Civ Engr 461</input></td>	
-											<td><input type="checkbox" name="CivEngr463" value="CivEngr463" align="left">Civ Engr 463</input></td>	
-											<td><input type="checkbox" name="CivEngr464" value="CivEngr464" align="left">Civ Engr 464</input></td>	
-											<td><input type="checkbox" name="CivEngr467" value="CivEngr467" align="left">Civ Engr 467</input></td>												
-											<td><input type="checkbox" name="CivEngr473" value="CivEngr473" align="left">Civ Engr 473</input></td>
+											<td><input type="checkbox" name="course_list[]" value="CivEngr461" align="left">Civ Engr 461</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr463" align="left">Civ Engr 463</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr464" align="left">Civ Engr 464</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr467" align="left">Civ Engr 467</input></td>												
+											<td><input type="checkbox" name="course_list[]" value="CivEngr473" align="left">Civ Engr 473</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="CivEngr474" value="CivEngr474" align="left">Civ Engr 474</input></td>	
-											<td><input type="checkbox" name="CivEngr480" value="CivEngr480" align="left">Civ Engr 480</input></td>	
-											<td><input type="checkbox" name="CivEngr485" value="CivEngr485" align="left">Civ Engr 485</input></td>	
-											<td><input type="checkbox" name="CivEngr486" value="CivEngr486" align="left">Civ Engr 486</input></td>												
-											<td><input type="checkbox" name="CivEngr488" value="CivEngr488" align="left">Civ Engr 488</input></td>
+											<td><input type="checkbox" name="course_list[]" value="CivEngr474" align="left">Civ Engr 474</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr480" align="left">Civ Engr 480</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr485" align="left">Civ Engr 485</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr486" align="left">Civ Engr 486</input></td>												
+											<td><input type="checkbox" name="course_list[]" value="CivEngr488" align="left">Civ Engr 488</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="CivEngr491" value="CivEngr491" align="left">Civ Engr 491</input></td>	
-											<td><input type="checkbox" name="CivEngr492" value="CivEngr492" align="left">Civ Engr 492</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr491" align="left">Civ Engr 491</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CivEngr492" align="left">Civ Engr 492</input></td>	
 										</tr>
 										
 										<tr><td height="15"></td></tr>
@@ -520,39 +614,42 @@
 										<td>Computer Science & Cyber Science (DFCS)</td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="CompSci206" value="CompSci206" align="left">Comp Sci 206</input></td>	
-											<td><input type="checkbox" name="CompSci210" value="CompSci210" align="left">Comp Sci 210</input></td>	
-											<td><input type="checkbox" name="CompSci211" value="CompSci211" align="left">Comp Sci 211</input></td>	
-											<td><input type="checkbox" name="CompSci212" value="CompSci212" align="left">Comp Sci 212</input></td>												
-											<td><input type="checkbox" name="CompSci220" value="CompSci220" align="left">Comp Sci 220</input></td>
+											<td><input type="checkbox" name="course_list[]" value="CompSci206" align="left">Comp Sci 206</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci210" align="left">Comp Sci 210</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci211" align="left">Comp Sci 211</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci212" align="left">Comp Sci 212</input></td>												
+											<td><input type="checkbox" name="course_list[]" value="CompSci220" align="left">Comp Sci 220</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="CompSci330" value="CompSci330" align="left">Comp Sci 330</input></td>	
-											<td><input type="checkbox" name="CompSci350" value="CompSci350" align="left">Comp Sci 350</input></td>	
-											<td><input type="checkbox" name="CompSci351" value="CompSci351" align="left">Comp Sci 351</input></td>	
-											<td><input type="checkbox" name="CompSci360" value="CompSci360" align="left">Comp Sci 360</input></td>												
-											<td><input type="checkbox" name="CompSci362" value="CompSci362" align="left">Comp Sci 362</input></td>
+											<td><input type="checkbox" name="course_list[]" value="CompSci330" align="left">Comp Sci 330</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci350" align="left">Comp Sci 350</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci351" align="left">Comp Sci 351</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci360" align="left">Comp Sci 360</input></td>												
+											<td><input type="checkbox" name="course_list[]" value="CompSci362" align="left">Comp Sci 362</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="CompSci364" value="CompSci364" align="left">Comp Sci 364</input></td>	
-											<td><input type="checkbox" name="CompSci380" value="CompSci380" align="left">Comp Sci 380</input></td>	
-											<td><input type="checkbox" name="CompSci385" value="CompSci385" align="left">Comp Sci 385</input></td>	
-											<td><input type="checkbox" name="CompSci426" value="CompSci426" align="left">Comp Sci 426</input></td>												
-											<td><input type="checkbox" name="CompSci431" value="CompSci431" align="left">Comp Sci 431</input></td>
+											<td><input type="checkbox" name="course_list[]" value="CompSci364" align="left">Comp Sci 364</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci380" align="left">Comp Sci 380</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci385" align="left">Comp Sci 385</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci426" align="left">Comp Sci 426</input></td>												
+											<td><input type="checkbox" name="course_list[]" value="CompSci431" align="left">Comp Sci 431</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="CompSci438" value="CompSci438" align="left">Comp Sci 438</input></td>	
-											<td><input type="checkbox" name="CompSci439" value="CompSci439" align="left">Comp Sci 439</input></td>	
-											<td><input type="checkbox" name="CompSci453" value="CompSci453" align="left">Comp Sci 453</input></td>	
-											<td><input type="checkbox" name="CompSci454" value="CompSci454" align="left">Comp Sci 454</input></td>												
-											<td><input type="checkbox" name="CompSci467" value="CompSci467" align="left">Comp Sci 467</input></td>
+											<td><input type="checkbox" name="course_list[]" value="CompSci438" align="left">Comp Sci 438</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci439" align="left">Comp Sci 439</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci453" align="left">Comp Sci 453</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci454" align="left">Comp Sci 454</input></td>												
+											<td><input type="checkbox" name="course_list[]" value="CompSci467" align="left">Comp Sci 467</input></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="CompSci471" value="CompSci471" align="left">Comp Sci 471</input></td>	
-											<td><input type="checkbox" name="CompSci474" value="CompSci474" align="left">Comp Sci 474</input></td>	
-											<td><input type="checkbox" name="CompSci476" value="CompSci476" align="left">Comp Sci 476</input></td>	
-											<td><input type="checkbox" name="CompSci483" value="CompSci483" align="left">Comp Sci 483</input></td>												
+											<td><input type="checkbox" name="course_list[]" value="CompSci471" align="left">Comp Sci 471</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci474" align="left">Comp Sci 474</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci476" align="left">Comp Sci 476</input></td>	
+											<td><input type="checkbox" name="course_list[]" value="CompSci483" align="left">Comp Sci 483</input></td>												
 										</tr>
+										
+										<td><div id = "courseListFeedback" class="formError"></div></td>
+										
 								
 
 										

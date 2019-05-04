@@ -35,13 +35,6 @@
        exit;
      }
 
-     // convert the carAccess boolean to 'Y' or 'N'
-
-     if (isset($_POST['carAccess'])) 
-       { $carAccess='Y'; }
-     else 
-       { $carAccess='N'; }
-
      // sanitize the input from the form to eliminate possible SQL Injection
 
 	$firstName = stripslashes($_POST['firstName']);
@@ -55,6 +48,18 @@
 
 	$squadron = stripslashes($_POST['squadron']);
 	$squadron = $db->real_escape_string($squadron);
+	
+	$building = stripslashes($_POST['building']);
+	$building = $db->real_escape_string($building);
+	
+	$phoneNumber = stripslashes($_POST['phoneNumber']);
+	$phoneNumber = $db->real_escape_string($phoneNumber);
+	
+	$emailAddress = stripslashes($_POST['emailAddress']);
+	$emailAddress = $db->real_escape_string($emailAddress);
+	
+	$classYear = stripslashes($_POST['classYear']);
+	$classYear = $db->real_escape_string($classYear);
 
      // set up a prepared statement to insert the tutor info
 
@@ -85,10 +90,18 @@
 	   <tr><td>Phone Number</td><td><?php echo $_POST['phoneNumber']; ?></td></tr>
 	   <tr><td>Email Address</td><td><?php echo $_POST['emailAddress']; ?></td></tr>
 	   <tr><td>Class Year</td><td><?php echo $_POST['classYear']; ?>
-	   
-	 </td></tr>
-     </table>
-     <br />
+	   <tr><td>Course List</td><td><?php 
+			if(!empty($_POST['course_list'])){
+			// Loop to store and display values of individual checked checkbox.
+				foreach($_POST['course_list'] as $selected){
+					echo $selected."</br>";
+				}
+			}?>
+			
+	
+		 </td></tr>
+		 </table>
+		 <br />
 
 <!-- Below demonstrates how to get system information from PHP -->
 
