@@ -15,7 +15,7 @@
 			.formError { color: red; font-weight: bold }
 		</style>
 		
-		<!-- JavaScript for volunteer form data validation -->
+		<!-- JavaScript for tutor form data validation -->
 		<script type="text/javascript">
 			var errorCount = new Number(0);
 			
@@ -44,7 +44,7 @@
 				
 			// first names must be letter, spaces, and hyphens and 50 or fewer characters
 				var validInputValue = new Boolean(true);
-				var firstNameValue = document.forms["volunteer_info"]["firstName"].value;
+				var firstNameValue = document.forms["tutor_info"]["firstName"].value;
 				var myRegExp = new RegExp("^[a-zA-Z \-]{1,50}$");
 				
 			// Test our receivedValue string against the regular expression
@@ -63,7 +63,7 @@
 				}
 
 			// last names must be letter, spaces, and hyphens and 50 or fewer characters
-				var lastNameValue = document.forms["volunteer_info"]["lastName"].value;
+				var lastNameValue = document.forms["tutor_info"]["lastName"].value;
 				
 			// Test our receivedValue string against the regular expression
 				validInputValue = myRegExp.test(lastNameValue);  
@@ -81,7 +81,7 @@
 				}
 
 			// email address must be letters, digits, underscores, and periods with one @
-				var emailAddressValue = document.forms["volunteer_info"]["emailAddress"].value;
+				var emailAddressValue = document.forms["tutor_info"]["emailAddress"].value;
 				myRegExp = new RegExp("^[a-zA-Z0-9_.\-]+@[a-zA-Z0-9_.]+$");
 				
 			// Test our receivedValue string against the regular expression
@@ -104,7 +104,7 @@
 				// tricia trial
 				
 				// room must be 3C4
-				var roomValue = document.forms["volunteer_info"]["room"].value;
+				var roomValue = document.forms["tutor_info"]["room"].value;
 				myRegExp = new RegExp("^[1-6]+[A-Z]+[0-9]+$");
 				
 			// Test our receivedValue string against the regular expression
@@ -122,45 +122,11 @@
 					document.getElementById('roomFeedback').innerHTML = "Error #" + errorCount;
 				}
 				
-				//tricia trial
 				
-				
-
-			// age must be numeric and in range of 17 to 29 inclusive
-				var ageValue = document.forms["volunteer_info"]["age"].value;
-
-				myRegExp = new RegExp("^[0-9]{2}$");  // check that age is numeric
-				
-			// Test our receivedValue string against the regular expression
-				validInputValue = myRegExp.test(ageValue);  
-				
-				var age = new Number(ageValue);  // convert to a number
-				
-			// Update form feedback
-				if ((validInputValue) && (age >= 17) && (age <= 29)) 
-				{
-					document.getElementById('ageFeedback').innerHTML = "";
-				}
-				else
-				{
-					validForm = false;
-					displayError("Age must be numeric in range of 17 to 29 inclusive");
-					document.getElementById('ageFeedback').innerHTML = "Error #" + errorCount;
-				}
-
-			// gender must be specified
-				if ((document.volunteer_info.gender[0].checked) || (document.volunteer_info.gender[1].checked)) 
-				{
-					document.getElementById('genderFeedback').innerHTML = "";
-				}
-				else
-				{
-					validForm = false;
-					displayError("Gender must be specified");
-					document.getElementById('genderFeedback').innerHTML = "Error #" + errorCount;
-				}
 				
 				return validForm;
+				//tricia trial
+				
 			}
 		</script>		
 	</head>
@@ -184,7 +150,7 @@
 							<br /><p><center>Sign Up to Be a Tutor!</center><p>
 						</div>
 						<center>
-							<form name="volunteer_info" method="post" id="volunteer_form" action="demo.php" onsubmit="return validateForm()">
+							<form name="tutor_info" method="post" id="tutor_form" action="demo_insert.php" onsubmit="return validateForm()">
 								<h3>Enter your information and click Submit</h3>
 								<div id="formFeedback" class="formError"></div>
 								<table>
@@ -214,6 +180,7 @@
 											  <option value="compSci">Cyber Science</option>
 											</select>
 											</td>
+											<td><div id = "majorFeedback" class="formError"></div></td>
 										</tr>
 										
 																				<tr>

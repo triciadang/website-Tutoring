@@ -46,7 +46,7 @@
 
 <!-- Give a link back to the main page -->
 
-     <a href="<?php echo $_SERVER["HTTP_REFERER"]; ?>">Click Here</a> to return to the CSL web site.
+     <a href="<?php echo $_SERVER["HTTP_REFERER"]; ?>">Click Here</a> to return to the Tutoring web site.
 
    </center>
  </body>
