@@ -37,7 +37,8 @@
            </div>
            <center>
            <table border="1" cellpadding="4">
-             <tr><th>First Name</th><th>Last Name</th><th>Squadron</th><th>Major</th><th>Phone Number</th></tr>
+             <tr><th>First Name</th><th>Last Name</th><th>Class Year</th><th>Squadron</th><th>Building</th>
+			 <th>Room Number</th><th>Major</th><th>Email Address</th><th>Phone Number</th></tr>
 
 <!-- Note the use of <?php ?> to embed PHP commands 
      and connect to the database and retrieve the info -->
@@ -99,16 +100,19 @@
 			   (($noSquadron == 0) OR (strcasecmp($r['tutorSquadron'],$_POST['squadron']) == 0)) AND
 			   (($noFirstName+$noLastName+$noMajor+$noSquadron)>0))
 			   {
-				   print '<tr><td>'.$r['tutorFName'].'</td><td>'.$r['tutorLName'].'</td><td>'.$r['tutorSquadron'].'</td><td>'.$r['tutorMajor'].' </td><td>'.$r['tutorPhone'].' </td></tr>';
+				   print '<tr><td>'.$r['tutorFName'].'</td><td>'.$r['tutorLName'].'</td>
+				   <td>'.$r['tutorClassYear'].'</td><td>'.$r['tutorSquadron'].'</td>
+				   <td>'.$r['tutorBuilding'].'</td><td>'.$r['tutorRoomNumber'].'</td>
+				   <td>'.$r['tutorMajor'].'</td><td>'.$r['tutorEmail'].'</td>
+				   <td>'.$r['tutorPhone'].'</td></tr>';
+				   print '<tr><th>Courses:</th><td colspan="8">'.$r['tutorCouses'].'</td></tr>';//+' '.$r['tutorCourses'].'</tr>';
 			   }
              }
 
              // deallocate memory for the results and close the database connection
-
-             $results->free();
+			 
+			 $results->free();
              $db->close();
-			 
-			 
 
            ?>
 		   
