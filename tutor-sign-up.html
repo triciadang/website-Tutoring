@@ -33,6 +33,17 @@
 					document.getElementById('formFeedback').innerHTML = "Error #" + errorCount + " - " + errorMsg;
 				}
 			}
+			
+			function checkCheckBoxes(){
+				var checked = false;
+				var courses = document.getElementsByName("course_list[]");
+				for (var i = 0; i<courses.length; i++){
+					if (courses[i].checked){
+						checked = true;
+					}
+				}
+				return checked;
+			}
 		
 			function validateForm()
 			{
@@ -58,7 +69,7 @@
 				else
 				{
 					validForm = false;
-					displayError("First name must be letters, hyphens, spaces and 50 or fewer characters" );
+					displayError("First name must be letters, hyphens, spaces and 50 or fewer characters." );
 					document.getElementById('firstNameFeedback').innerHTML = "Error #" + errorCount;
 				}
 
@@ -76,7 +87,7 @@
 				else
 				{
 					validForm = false;
-					displayError("Last name must be letters, hyphens, spaces and 50 or fewer characters" );
+					displayError("Last name must be letters, hyphens, spaces and 50 or fewer characters." );
 					document.getElementById('lastNameFeedback').innerHTML = "Error #" + errorCount;
 				}
 
@@ -91,7 +102,7 @@
 				else
 				{
 					validForm = false;
-					displayError("Choose a major");
+					displayError("Choose a major.");
 					document.getElementById('majorFeedback').innerHTML = "Error #" + errorCount;
 				}
 				
@@ -106,7 +117,7 @@
 				else
 				{
 					validForm = false;
-					displayError("Choose a squadron");
+					displayError("Choose a squadron.");
 					document.getElementById('squadronFeedback').innerHTML = "Error #" + errorCount;
 				}
 				
@@ -126,7 +137,7 @@
 				else
 				{
 					validForm = false;
-					displayError("Room Number must be in a form like 3C10 or 6A100");
+					displayError("Room Number must be in a form like 3C10 or 6A100.");
 					document.getElementById('roomFeedback').innerHTML = "Error #" + errorCount;
 				}
 				
@@ -145,7 +156,7 @@
 				else
 				{
 					validForm = false;
-					displayError("Phone number should be in the form XXXXXXXXXX");
+					displayError("Phone number should be in the form XXXXXXXXXX.");
 					document.getElementById('phoneFeedback').innerHTML = "Error #" + errorCount;
 				}
 				
@@ -180,25 +191,21 @@
 				else
 				{
 					validForm = false;
-					displayError("Choose your class year");
+					displayError("Choose your class year.");
 					document.getElementById('classYearFeedback').innerHTML = "Error #" + errorCount;
 				}
-						
-						
-			// Course List must be inputted
-				//var courseListValue = document.forms["tutor_info"]["course_list[0]"].value;
-			
+				
 			// Update form feedback
-				//if (document.forms["tutor_info"]["course_list[0]"].length > 0) 
-				//{
-				//	document.getElementById('courseListFeedback').innerHTML = "";
-				//}
-				//else
-				//{
-				//	validForm = false;
-				//	displayError("Choose the courses you can tutor");
-				//	document.getElementById('courseListFeedback').innerHTML = "Error #" + errorCount;
-				//}
+				if (checkCheckBoxes()) 
+				{
+					document.getElementById('courseListFeedback').innerHTML = "";
+				}
+				else
+				{
+					validForm = false;
+					displayError("Choose the courses you can tutor.");
+					document.getElementById('courseListFeedback').innerHTML = "Error #" + errorCount;
+				}
 				
 				return validForm;
 				
@@ -247,14 +254,14 @@
 											<td>
 											<select name="major">
 											  <option value=""></option>
-											  <option value="aero">Aeronautical Engineering</option>
-											  <option value="astro">Astronautical Engineering</option>
-											  <option value="biology">Biology</option>
-											  <option value="behSci">Behavioral Sciences</option>
-											  <option value="chem">Chemistry</option>
-											  <option value="civil">Civil Engineering</option>
-											  <option value="compSci">Computer Science</option>
-											  <option value="compSci">Cyber Science</option>
+											  <option value="Aero">Aeronautical Engineering</option>
+											  <option value="Astro">Astronautical Engineering</option>
+											  <option value="Biology">Biology</option>
+											  <option value="BehSci">Behavioral Sciences</option>
+											  <option value="Chem">Chemistry</option>
+											  <option value="Civil">Civil Engineering</option>
+											  <option value="CompSci">Computer Science</option>
+											  <option value="CompSci">Cyber Science</option>
 											</select>
 											</td>
 											<td><div id = "majorFeedback" class="formError"></div></td>
@@ -319,6 +326,7 @@
 										</table>
 										
 										<table>
+										<td><div id = "courseListFeedback" class="formError"></div></td>
 										<tr>						
 											<td><b>Core Courses You Can Tutor In:</b></td>
 										</tr>
@@ -619,7 +627,6 @@
 											<td><input type="checkbox" name="course_list[]" value="CompSci483" align="left">Comp Sci 483</input></td>												
 										</tr>
 										
-										<td><div id = "courseListFeedback" class="formError"></div></td>
 										
 								
 
