@@ -86,7 +86,7 @@
 			// Update form feedback
 				if (majorValue.length > 0) 
 				{
-					document.getElementById('roomFeedback').innerHTML = "";
+					document.getElementById('majorFeedback').innerHTML = "";
 				}
 				else
 				{
@@ -113,10 +113,10 @@
 								
 			// Room must be 3C4
 				var roomValue = document.forms["tutor_info"]["room"].value;
-				myRegExp = new RegExp("^[1-6]+[A-Z]+[0-9]+$");
+				myRegExp = new RegExp("^[1-6]{1}[A-Z]{1}[0-9]+$");
 				
 			// Test our receivedValue string against the regular expression
-				validInputValue = myRegExp.test(emailAddressValue);  
+				validInputValue = myRegExp.test(roomValue);  
 				
 			// Update form feedback
 				if (validInputValue || roomValue.length == 0) 
@@ -126,7 +126,7 @@
 				else
 				{
 					validForm = false;
-					displayError("Room Number must be in the form 3C10 or 6A100");
+					displayError("Room Number must be in a form like 3C10 or 6A100");
 					document.getElementById('roomFeedback').innerHTML = "Error #" + errorCount;
 				}
 				
@@ -136,7 +136,7 @@
 			// Update form feedback
 				if (buildingValue.length > 0) 
 				{
-					document.getElementById('emailAddressFeedback').innerHTML = "";
+					document.getElementById('buildingFeedback').innerHTML = "";
 				}
 				else
 				{
